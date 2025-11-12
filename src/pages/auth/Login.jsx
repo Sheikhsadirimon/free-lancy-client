@@ -1,4 +1,4 @@
-import React, { use, useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -19,7 +19,7 @@ const Login = () => {
     signIn(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user.accessToken)
+        // console.log(user.accessToken)
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {

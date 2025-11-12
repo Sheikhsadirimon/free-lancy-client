@@ -53,6 +53,7 @@ const JobDetails = () => {
       toast.success("Job accepted! View in My Tasks");
       setAlreadyAccepted(true);
     } catch (err) {
+      console.error("Accept failed:", err);
       toast.error("Failed to accept job");
     } finally {
       setAccepting(false);
@@ -60,6 +61,8 @@ const JobDetails = () => {
   };
 
   if (loading) return <Loading />;
+
+  const isOwnJob = user && job.email === user.email;
 
   return (
     <div className="min-h-screen bg-base-200 py-12 px-4">
@@ -82,6 +85,9 @@ const JobDetails = () => {
                 <h1 className="text-3xl font-bold mt-3">{job.title}</h1>
                 <p className="text-sm opacity-70 mt-1">
                   Posted by <span className="font-medium">{job.postedBy}</span>
+                  {isOwnJob && (
+                    <span className="badge badge-accent badge-sm ml-2">Your Job</span>
+                  )}
                 </p>
               </div>
               <div className="text-right">
@@ -120,14 +126,19 @@ const JobDetails = () => {
               ) : (
                 <button
                   onClick={handleAccept}
-                  disabled={accepting || !user}
-                  className="btn btn-primary flex-1"
+                  disabled={accepting || !user || isOwnJob}
+                  className={`btn flex-1 ${
+                    isOwnJob ? "btn-disabled opacity-60" : "btn-primary"
+                  }`}
+                  title={isOwnJob ? "You cannot accept your own job" : ""}
                 >
                   {accepting ? (
                     <>
                       <span className="loading loading-spinner"></span>
                       Accepting...
                     </>
+                  ) : isOwnJob ? (
+                    "Your Job"
                   ) : (
                     "Accept Job"
                   )}
