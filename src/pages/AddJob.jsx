@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import useAxios from "../hooks/useAxios";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../hooks/useAxiosSecure";

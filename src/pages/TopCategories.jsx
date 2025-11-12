@@ -54,23 +54,17 @@ const TopCategories = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category, index) => {
+          {categories.map((category) => {
             const Icon = category.icon;
             return (
               <div
                 key={category.label}
-                className="relative overflow-hidden rounded-xl p-8 text-white group cursor-pointer transition-transform duration-300 hover:scale-105 animate-fade-in-up"
-                style={{
-                  background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
-                  animationDelay: `${index * 80}ms`,
-                }}
+                className="relative overflow-hidden rounded-xl p-8 text-white group cursor-pointer transition-transform duration-300 hover:scale-105 "
               >
-                
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${category.color}`}
                 ></div>
 
-                
                 <div className="relative z-10">
                   <div className="flex items-start justify-between mb-6">
                     <Icon size={40} className="opacity-90" />

@@ -13,7 +13,7 @@ const AcceptedTasks = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) return;
+    
 
     axiosSecure
       .get(`/accepted-tasks?email=${user.email}`)
@@ -22,7 +22,7 @@ const AcceptedTasks = () => {
         setLoading(false);
       })
       .catch(() => {
-        toast.error("Failed to load tasks");
+        
         setLoading(false);
       });
   }, [user, axiosSecure]);
@@ -101,10 +101,7 @@ const AcceptedTasks = () => {
                     <p className="text-sm opacity-80 mt-1 line-clamp-2">
                       {task.summary}
                     </p>
-                    <p className="text-xs opacity-60 mt-2">
-                      Accepted on:{" "}
-                      {new Date(task.acceptedAt).toLocaleDateString()}
-                    </p>
+                    
                     <div className="flex gap-2 mt-4">
                       <button
                         onClick={() =>
@@ -130,7 +127,7 @@ const AcceptedTasks = () => {
           )}
         </div>
 
-        {/* Desktop: Table */}
+        
         <div className="hidden lg:block overflow-x-auto">
           {tasks.length === 0 ? (
             <p className="text-center py-12">
@@ -144,7 +141,6 @@ const AcceptedTasks = () => {
                   <th>Title</th>
                   <th>Category</th>
                   <th>Summary</th>
-                  <th>Accepted On</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -168,12 +164,10 @@ const AcceptedTasks = () => {
                         {task.category}
                       </div>
                     </td>
-                    <td className="max-w-xs text-sm opacity-80 line-clamp-2">
+                    <td className="max-w-xs text-sm opacity-80 line-clamp-3">
                       {task.summary}
                     </td>
-                    <td className="text-xs">
-                      {new Date(task.acceptedAt).toLocaleDateString()}
-                    </td>
+                    
                     <td>
                       <div className="flex gap-2">
                         <button

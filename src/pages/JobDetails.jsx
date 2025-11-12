@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router";
+import { useParams, Link } from "react-router";
 import { toast } from "react-toastify";
 import Loading from "./Loading";
 import useAuth from "../hooks/useAuth";

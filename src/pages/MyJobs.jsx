@@ -20,7 +20,6 @@ const MyJobs = () => {
   });
 
   useEffect(() => {
-    if (!user) return;
     axiosSecure.get(`/Jobs?email=${user.email}`).then((res) => {
       setJobs(res.data);
       setLoading(false);
@@ -88,14 +87,6 @@ const MyJobs = () => {
     }
   };
 
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl">Please log in to view your jobs</p>
-      </div>
-    );
-  }
-
   if (loading) return <Loading />;
 
   return (
@@ -122,10 +113,16 @@ const MyJobs = () => {
                   </div>
                   <div className="flex-1 p-4">
                     <div className="flex justify-between items-start mb-2">
-                      <span className="badge badge-primary badge-sm">{job.category}</span>
+                      <span className="badge badge-primary badge-sm">
+                        {job.category}
+                      </span>
                     </div>
-                    <h3 className="font-bold text-lg line-clamp-1">{job.title}</h3>
-                    <p className="text-sm opacity-80 mt-1 line-clamp-2">{job.summary}</p>
+                    <h3 className="font-bold text-lg line-clamp-1">
+                      {job.title}
+                    </h3>
+                    <p className="text-sm opacity-80 mt-1 line-clamp-2">
+                      {job.summary}
+                    </p>
                     <div className="flex gap-2 mt-4">
                       <button
                         onClick={() => openModal(job)}
@@ -177,9 +174,13 @@ const MyJobs = () => {
                     </td>
                     <td className="font-semibold">{job.title}</td>
                     <td>
-                      <div className="badge badge-primary badge-sm">{job.category}</div>
+                      <div className="badge badge-primary badge-sm">
+                        {job.category}
+                      </div>
                     </td>
-                    <td className="max-w-xs text-sm opacity-80 line-clamp-3">{job.summary}</td>
+                    <td className="max-w-xs text-sm opacity-80 line-clamp-3">
+                      {job.summary}
+                    </td>
                     <td>
                       <div className="flex gap-2">
                         <button
@@ -203,7 +204,6 @@ const MyJobs = () => {
           )}
         </div>
 
-        
         <dialog id="update_modal" className="modal">
           <div className="modal-box w-11/12 max-w-2xl">
             <h3 className="font-bold text-lg mb-4">Update Job</h3>
@@ -278,7 +278,11 @@ const MyJobs = () => {
                 <button type="submit" className="btn btn-primary">
                   Update Job
                 </button>
-                <button type="button" onClick={closeModal} className="btn btn-ghost">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="btn btn-ghost"
+                >
                   Cancel
                 </button>
               </div>
