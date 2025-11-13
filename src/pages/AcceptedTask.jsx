@@ -13,8 +13,6 @@ const AcceptedTasks = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
-
     axiosSecure
       .get(`/accepted-tasks?email=${user.email}`)
       .then((res) => {
@@ -22,7 +20,6 @@ const AcceptedTasks = () => {
         setLoading(false);
       })
       .catch(() => {
-        
         setLoading(false);
       });
   }, [user, axiosSecure]);
@@ -46,8 +43,6 @@ const AcceptedTasks = () => {
     try {
       await axiosSecure.delete(`/accepted-tasks/${acceptedTaskId}`);
 
-      await axiosSecure.delete(`/Jobs/${jobId}`);
-
       setTasks((prev) => prev.filter((t) => t._id !== acceptedTaskId));
 
       toast.success(
@@ -59,7 +54,6 @@ const AcceptedTasks = () => {
     }
   };
 
-
   if (loading) return <Loading />;
 
   return (
@@ -69,7 +63,6 @@ const AcceptedTasks = () => {
           My Accepted Tasks
         </h2>
 
-        
         <div className="block lg:hidden">
           {tasks.length === 0 ? (
             <p className="text-center py-12">
@@ -101,7 +94,7 @@ const AcceptedTasks = () => {
                     <p className="text-sm opacity-80 mt-1 line-clamp-2">
                       {task.summary}
                     </p>
-                    
+
                     <div className="flex gap-2 mt-4">
                       <button
                         onClick={() =>
@@ -127,7 +120,6 @@ const AcceptedTasks = () => {
           )}
         </div>
 
-        
         <div className="hidden lg:block overflow-x-auto">
           {tasks.length === 0 ? (
             <p className="text-center py-12">
@@ -167,7 +159,7 @@ const AcceptedTasks = () => {
                     <td className="max-w-xs text-sm opacity-80 line-clamp-3">
                       {task.summary}
                     </td>
-                    
+
                     <td>
                       <div className="flex gap-2">
                         <button
@@ -197,7 +189,6 @@ const AcceptedTasks = () => {
           )}
         </div>
       </div>
-      
     </div>
   );
 };

@@ -17,9 +17,15 @@ const AllJobs = () => {
         let sorted = [...res.data];
 
         if (sortOrder === "newest") {
-          sorted.sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
+          sorted.sort(
+            (a, b) =>
+              new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime()
+          );
         } else {
-          sorted.sort((a, b) => new Date(a.postedAt).getTime() - new Date(b.postedAt).getTime());
+          sorted.sort(
+            (a, b) =>
+              new Date(a.postedAt).getTime() - new Date(b.postedAt).getTime()
+          );
         }
 
         setJobs(sorted);
@@ -38,7 +44,9 @@ const AllJobs = () => {
     <div className="min-h-screen bg-base-200 py-8 px-4">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-          <h2 className="text-2xl sm:text-3xl font-bold">All Jobs</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">
+            All Jobs : <span className="text-primary">{jobs.length}</span>
+          </h2>
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
@@ -62,19 +70,30 @@ const AllJobs = () => {
                     alt={job.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.src = "https://via.placeholder.com/80?text=No+Image";
+                      e.currentTarget.src =
+                        "https://via.placeholder.com/80?text=No+Image";
                     }}
                   />
                 </div>
                 <div className="flex-1 p-4">
                   <div className="flex flex-col sm:flex-row justify-between items-start mb-2 gap-2">
-                    <span className="badge badge-primary badge-sm">{job.category}</span>
-                    <span className="text-xs opacity-70">by {job.postedBy}</span>
+                    <span className="badge badge-primary badge-sm">
+                      {job.category}
+                    </span>
+                    <span className="text-xs opacity-70">
+                      by {job.postedBy}
+                    </span>
                   </div>
-                  <h3 className="font-bold text-lg line-clamp-1">{job.title}</h3>
-                  <p className="text-sm opacity-80 mt-1 line-clamp-2">{job.summary}</p>
+                  <h3 className="font-bold text-lg line-clamp-1">
+                    {job.title}
+                  </h3>
+                  <p className="text-sm opacity-80 mt-1 line-clamp-2">
+                    {job.summary}
+                  </p>
                   <Link to={`/jobDetails/${job._id}`} className="mt-3 block">
-                    <button className="btn btn-primary btn-sm w-full">View Details</button>
+                    <button className="btn btn-primary btn-sm w-full">
+                      View Details
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -96,7 +115,10 @@ const AllJobs = () => {
             </thead>
             <tbody>
               {jobs.map((job) => (
-                <tr key={job._id} className="hover:bg-base-200 transition-colors">
+                <tr
+                  key={job._id}
+                  className="hover:bg-base-200 transition-colors"
+                >
                   <td>
                     <div className="avatar">
                       <div className="w-20 h-20 rounded-lg overflow-hidden">
@@ -105,7 +127,8 @@ const AllJobs = () => {
                           alt={job.title}
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            e.currentTarget.src = "https://via.placeholder.com/80?text=No+Image";
+                            e.currentTarget.src =
+                              "https://via.placeholder.com/80?text=No+Image";
                           }}
                         />
                       </div>
@@ -113,13 +136,19 @@ const AllJobs = () => {
                   </td>
                   <td className="font-semibold">{job.title}</td>
                   <td>
-                    <div className="badge badge-primary badge-sm">{job.category}</div>
+                    <div className="badge badge-primary badge-sm">
+                      {job.category}
+                    </div>
                   </td>
                   <td className="text-sm opacity-70">{job.postedBy}</td>
-                  <td className="max-w-xs text-sm opacity-80 line-clamp-2">{job.summary}</td>
+                  <td className="max-w-xs text-sm opacity-80 line-clamp-2">
+                    {job.summary}
+                  </td>
                   <td>
                     <Link to={`/jobDetails/${job._id}`}>
-                      <button className="btn btn-primary btn-sm">View Details</button>
+                      <button className="btn btn-primary btn-sm">
+                        View Details
+                      </button>
                     </Link>
                   </td>
                 </tr>
@@ -129,7 +158,9 @@ const AllJobs = () => {
         </div>
 
         {jobs.length === 0 && (
-          <p className="text-center text-base-content/50 py-12">No jobs available yet.</p>
+          <p className="text-center text-base-content/50 py-12">
+            No jobs available yet.
+          </p>
         )}
       </div>
     </div>
