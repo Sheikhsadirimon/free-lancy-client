@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../hooks/useAxiosSecure";
@@ -7,7 +7,6 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 const AddJob = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -45,7 +44,13 @@ const AddJob = () => {
     });
 
     toast.success("Job posted successfully!");
-    navigate("/all-jobs");
+
+    setFormData({
+        title: "",
+        category: "",
+        summary: "",
+        coverImage: "",
+      });
   };
 
   return (
@@ -127,7 +132,6 @@ const AddJob = () => {
                   className="input input-bordered w-full"
                   required
                 />
-                
               </div>
 
               <div>
